@@ -1,0 +1,248 @@
+C51 COMPILER V9.02   I2C                                                                   12/01/2023 17:42:07 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE I2C
+OBJECT MODULE PLACED IN i2c.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE i2c.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "types.h"
+   2          #include "delay.h"
+   3          #include "i2c_defines.h"
+   4          
+   5          // low level embedded-c driver for i2c bus events
+   6          
+   7          /* routine to issue start event/condition */
+   8          void i2cStart(void)
+   9          {
+  10   1      //  sda=1;//default status of sda line can be avoided
+  11   1      //  scl=1;//default status of scl line can be avoided
+  12   1        sda=0;//pull down sda from high to low issues start event 
+  13   1      }
+  14          
+  15          /* routine to issue re start event/condition in-between  certain i2c
+  16             communication alogirthm somewhere between the start & stop.
+  17          */
+  18          void i2cReStart(void)
+  19          {
+  20   1        scl=0;//make scl low to make/release sda 1
+  21   1        sda=1;//default status of sda line can be avoided
+  22   1        scl=1;//default status of scl line can be avoided
+  23   1        sda=0;//pull down sda from high to low issues start event 
+  24   1      }
+  25          
+  26          /* routine to issue stop event/condition */
+  27          void i2cStop(void)
+  28          {
+  29   1        scl=0;//to change status of sda ,scl is made low during communication
+  30   1        sda=0;//now scl is made low
+  31   1        scl=1;//scl line is released
+  32   1        sda=1;//sda is raised from low to high to issue stop condition
+  33   1      }
+  34          
+  35          
+  36          
+  37          /* 
+  38            routine for serializing out byte in order msb toward lsb across sda line
+  39            with clock cycles across scl line
+  40          */
+  41          void i2cWrite(u8 byte)
+  42          {
+  43   1        u8 i;
+  44   1        for(i=0;i<8;i++)
+  45   1        {
+  46   2          scl=0;//to allow change of bit status across sda line
+  47   2          sda=(byte>>(7-i))&1;//serialize-out data msb to lsb/changing sda line
+  48   2          //sda= (byte&(0x80>>i)) ? 1 : 0;//serialize data msb to lsb/changing sda line
+  49   2          /*if(byte & (0x80>>i))
+  50   2            sda=1;
+  51   2          else
+  52   2            sda=0;
+  53   2          */
+  54   2          scl=1;//release scl line so that slave can check/read/monitor bit received
+  55   2                //across
+C51 COMPILER V9.02   I2C                                                                   12/01/2023 17:42:07 PAGE 2   
+
+  56   2        }  
+  57   1      }
+  58          
+  59          /* 
+  60            routine for serializing-in a byte in order msb toward lsb across sda line
+  61            with clock cycles across scl line
+  62          */
+  63          u8 i2cRead(void)
+  64          {
+  65   1        u8 i,buff;
+  66   1        for(i=0;i<8;i++)
+  67   1        {
+  68   2          scl=0;//to allow change of bit status across sda line by slave
+  69   2          scl=1;//master releases scl line so that it can check/read/monitor bit received
+  70   2                //across sda line
+  71   2          if(sda)//reading valid bit status
+  72   2            buff|=0x80>>i; //& updating appropriate bit pos with '1' level
+  73   2          else
+  74   2            buff&=~(0x80>>i);//or updating appropriate bit pos with '0' level
+  75   2        }
+  76   1        return buff;   
+  77   1      }
+  78          
+  79          
+  80          
+  81          
+  82          
+  83          /*
+  84             master taking acknowlegement from slave after writing byte of information
+  85          */
+  86          
+  87          void i2cSlaveAck(void)
+  88          {
+  89   1        scl=0;//master make scl=0 to change sda to high/release sda
+  90   1        sda=1;//master is releasing sda,so that slave can pull down sda for +ack
+  91   1        scl=1;//master releases scl also
+  92   1        while(sda);//master is checking sda if it is high/low,
+  93   1                   //if sda continues to remain high,implies -ve ack/no ack received
+  94   1                   //sda is low ,implies +ve ack,& master can continue further activity. 
+  95   1      }
+  96          
+  97          /*
+  98             master issues not of acknowlegement onto bus for slave for only byte/last of several
+  99             bytes read from slave
+ 100          */
+ 101          
+ 102          void i2cNAck(void)
+ 103          {
+ 104   1        scl=0;//master make scl=0 to change sda to high/release sda
+ 105   1        sda=1;//master is releasing sda,so slave can read this status of not of acknowledge
+ 106   1        scl=1;//master releases scl,slave read here that status 
+ 107   1      }
+ 108          
+ 109          /* 
+ 110             master issue acknowlegment to slave for every byte read except the last
+ 111             of several bytes being read.
+ 112          */
+ 113          
+ 114          void i2cMasterAck(void)
+ 115          {
+ 116   1         scl=0;//master makes scl=0 to pull down sda =0 for issuing its +ve ack
+ 117   1         sda=0;//master pulls down sda for +ve ack issue,& slave release sda from its end
+C51 COMPILER V9.02   I2C                                                                   12/01/2023 17:42:07 PAGE 3   
+
+ 118   1         scl=1;//master release scl ,so that slave can read that status of ack (+ve/-ve)
+ 119   1         scl=0;//master now has to release sda,so scl=0
+ 120   1         sda=1;//now master release sda from low to high      
+ 121   1      }
+ 122          
+ 123          
+ 124          
+ 125          
+ 126          
+ 127          
+ 128          
+ 129          // low lever embedded-c drivers for i2c communication algorithms
+ 130          
+ 131          /*
+ 132             This routine is attempts to write to any random location of the eeprom
+ 133             by each time providing the address location where data needs to be written into
+ 134          */
+ 135          void i2cDevByteWrite(u8 slaveAddr7Bit,u8 wBuffAddr,u8 dat)
+ 136          {
+ 137   1        i2cStart();
+ 138   1        i2cWrite((slaveAddr7Bit)|0);
+ 139   1        i2cSlaveAck();
+ 140   1        i2cWrite(wBuffAddr);
+ 141   1        i2cSlaveAck();
+ 142   1        i2cWrite(dat);
+ 143   1        i2cSlaveAck();
+ 144   1        i2cStop();
+ 145   1        delay_ms(10);
+ 146   1      }
+ 147          
+ 148          /*
+ 149             This routine is attempts to read from any random location of the eeprom
+ 150             by each time providing the address location where data needs to read from
+ 151          */
+ 152          u8 i2cDevRandomRead(u8 slaveAddr7Bit,u8 rBuffAddr)
+ 153          {
+ 154   1        u8 buff;
+ 155   1        i2cStart();
+ 156   1        i2cWrite((slaveAddr7Bit)|0);
+ 157   1        i2cSlaveAck();
+ 158   1        i2cWrite(rBuffAddr);
+ 159   1        i2cSlaveAck();
+ 160   1        i2cReStart();
+ 161   1        i2cWrite((slaveAddr7Bit)|1);
+ 162   1        i2cSlaveAck();
+ 163   1        buff=i2cRead();
+ 164   1        i2cNAck();
+ 165   1        i2cStop(); 
+ 166   1      
+ 167   1        return buff;
+ 168   1      }
+ 169          
+ 170          
+ 171          
+ 172          
+ 173          
+ 174          
+ 175          void i2cDevPageWrite(u8 slaveAddr7Bit,
+ 176                               u8 wBuffSeqStartAddr,
+ 177                               u8 *ptr8Bytes,
+ 178                               u8 nBytes)
+ 179          {
+C51 COMPILER V9.02   I2C                                                                   12/01/2023 17:42:07 PAGE 4   
+
+ 180   1        u8 i;
+ 181   1        i2cStart();
+ 182   1        i2cWrite((slaveAddr7Bit)|0);
+ 183   1        i2cSlaveAck();
+ 184   1        i2cWrite(wBuffSeqStartAddr);
+ 185   1        i2cSlaveAck();
+ 186   1      
+ 187   1        for(i=0;i<nBytes;i++)
+ 188   1        {
+ 189   2          i2cWrite(*ptr8Bytes++);
+ 190   2          i2cSlaveAck();
+ 191   2        }
+ 192   1        i2cStop();
+ 193   1        delay_ms(10);
+ 194   1      }
+ 195          
+ 196          void i2cDevSeqRead(u8 slaveAddr7Bit,
+ 197                               u8 rBuffSeqStartAddr,
+ 198                               u8 *ptr8Bytes,
+ 199                               u8 nBytes)
+ 200          {
+ 201   1        u8 i;
+ 202   1        i2cStart();
+ 203   1        i2cWrite((slaveAddr7Bit)|0);
+ 204   1        i2cSlaveAck();
+ 205   1        i2cWrite(rBuffSeqStartAddr);
+ 206   1        i2cSlaveAck();
+ 207   1        i2cReStart();
+ 208   1        i2cWrite((slaveAddr7Bit)|1);
+ 209   1        i2cSlaveAck();
+ 210   1        for(i=0;i<nBytes-1;i++)
+ 211   1        {
+ 212   2          ptr8Bytes[i]=i2cRead();
+ 213   2          i2cMasterAck();
+ 214   2        }
+ 215   1        ptr8Bytes[i++]=i2cRead();
+ 216   1        ptr8Bytes[i]='\0';
+ 217   1        i2cNAck();
+ 218   1        i2cStop();
+ 219   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    362    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

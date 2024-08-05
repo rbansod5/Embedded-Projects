@@ -1,0 +1,89 @@
+C51 COMPILER V9.02   MULTIPLE_OF_100_TRANSCATION                                           12/01/2023 19:31:40 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MULTIPLE_OF_100_TRANSCATION
+OBJECT MODULE PLACED IN multiple_of_100_transcation.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE multiple_of_100_transcation.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<stdio.h>
+   2          #include<stdlib.h>
+   3          #include<stdio_ext.h>
+*** WARNING C318 IN LINE 3 OF multiple_of_100_transcation.c: can't open file 'stdio_ext.h'
+   4          static int bal=1000;
+   5          const int pinn=1234;
+   6          int amount;
+   7          int with()
+   8          {
+   9   1      printf("enter the pin\n");
+  10   1      int a;
+*** ERROR C141 IN LINE 10 OF MULTIPLE_OF_100_TRANSCATION.C: syntax error near 'int'
+*** ERROR C202 IN LINE 10 OF MULTIPLE_OF_100_TRANSCATION.C: 'a': undefined identifier
+  11   1      scanf("%d",&a);
+*** ERROR C202 IN LINE 11 OF MULTIPLE_OF_100_TRANSCATION.C: 'a': undefined identifier
+  12   1      if(a==pinn)
+*** ERROR C202 IN LINE 12 OF MULTIPLE_OF_100_TRANSCATION.C: 'a': undefined identifier
+  13   1      {
+  14   2              printf("enter the amount to withdraw (in mutiple of 100):\n");
+  15   2              scanf("%d",&amount);
+  16   2              if(amount%100==0&&amount<=bal)
+  17   2              {
+  18   3                      bal-=amount;
+  19   3                      printf("withdraw suceessfull : remaining ballace %d\n",bal);
+  20   3              }
+  21   2              else 
+  22   2              {
+  23   3                      printf("invalid amount\n");
+  24   3              }
+  25   2      
+  26   2      }
+  27   1      else 
+  28   1      printf("invalid password try again \n");
+  29   1      }
+  30          int deposite(void)
+  31          {
+  32   1      int a;
+  33   1      printf("enter the deposite amount\n");
+  34   1      scanf("%d",&a);
+  35   1      bal+=a;
+  36   1      }
+  37          void check(void)
+  38          {
+  39   1      printf("your balance is:%d\n",bal);
+  40   1      }
+  41          
+  42          void pin(void)
+  43          {
+  44   1      
+  45   1      }
+  46          
+  47          int main(void)
+  48          {
+  49   1      while(1)
+  50   1      {
+C51 COMPILER V9.02   MULTIPLE_OF_100_TRANSCATION                                           12/01/2023 19:31:40 PAGE 2   
+
+  51   2              
+  52   2      printf("1.withdraw 2.deposite 3.check ballace 5.exit 4.change pin\n");
+  53   2      char ch=0;
+*** ERROR C141 IN LINE 53 OF MULTIPLE_OF_100_TRANSCATION.C: syntax error near 'char'
+*** ERROR C202 IN LINE 53 OF MULTIPLE_OF_100_TRANSCATION.C: 'ch': undefined identifier
+  54   2      __fpurge(stdin);
+*** ERROR C202 IN LINE 54 OF MULTIPLE_OF_100_TRANSCATION.C: 'stdin': undefined identifier
+  55   2      scanf("%c",&ch);
+*** ERROR C202 IN LINE 55 OF MULTIPLE_OF_100_TRANSCATION.C: 'ch': undefined identifier
+  56   2      switch(ch)
+*** ERROR C202 IN LINE 56 OF MULTIPLE_OF_100_TRANSCATION.C: 'ch': undefined identifier
+  57   2      {
+  58   3      case '1':with();break;
+  59   3      case '2':deposite();break;
+  60   3      case '3':check();break;
+  61   3      case '5': exit(1);break;
+  62   3      case '4': pin();break;
+  63   3      default : printf("invalid key\n");
+  64   3      }
+  65   2      }
+  66   1      }
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  9 ERROR(S)

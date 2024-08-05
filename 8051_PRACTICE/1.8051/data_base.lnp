@@ -1,0 +1,4 @@
+"data_base_8051.obj",
+"lcd.obj" 
+TO "data_base" 
+RAMSIZE(256) 

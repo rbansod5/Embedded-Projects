@@ -1,0 +1,32 @@
+C51 COMPILER V9.02   I2C_TEST_MAIN                                                         11/29/2023 19:00:29 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE I2C_TEST_MAIN
+OBJECT MODULE PLACED IN i2c_test_main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE i2c_test_main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1           #include<reg52.h>
+   2           #include"i2c.h"
+*** WARNING C318 IN LINE 4 OF i2c.h: can't open file 'types.h'
+*** ERROR C141 IN LINE 9 OF I2C.H: syntax error near 'byte', expected ')'
+*** ERROR C129 IN LINE 10 OF I2C.H: missing ';' before 'i2cRead'
+   3           #include"delay.h"
+   4          
+   5          
+   6          extern  rec[12];
+   7          int main()        
+   8          {
+   9          //  unsigned char dataa[12];
+  10             while(1)
+  11             {
+  12            ser_init();
+  13            i2c_send_string(0x00," DYNAMITE");
+  14            i2c_read_string(0x00);
+  15            tx_str(rec);
+  16            }
+  17          
+  18          }
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  2 ERROR(S)

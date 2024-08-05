@@ -1,0 +1,50 @@
+C51 COMPILER V7.08   MAIN_LM35                                                             12/08/2023 19:41:41 PAGE 1   
+
+
+C51 COMPILER V7.08, COMPILATION OF MODULE MAIN_LM35
+OBJECT MODULE PLACED IN main_lm35.OBJ
+COMPILER INVOKED BY: C:\Keil2\C51\BIN\C51.EXE main_lm35.c BROWSE DEBUG OBJECTEXTEND TABS(8)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "types.h"
+   3          #include "mcp3204.h"
+   4          #include "lcd.h"
+   5          #include "delay.h"
+   6          
+   7          main()
+   8          {
+   9   1              f32 analogR;
+  10   1              u8 temp;
+  11   1      
+  12   1              LCD_Init();;
+  13   1      
+  14   1              Write_CMD_LCD(0x80);
+  15   1              Write_str_LCD("LM35 TEST:");
+  16   1              
+  17   1              while(1)
+  18   1              {
+  19   2              analogR=Read1_ADC_MCP3204(0);
+  20   2                      temp = analogR * 100;
+  21   2                      Write_CMD_LCD(0xC0);
+  22   2                      Write_int_LCD(temp);
+  23   2                      Write_DAT_LCD(223);;
+  24   2                      Write_str_LCD("C  ");
+  25   2                      delay_ms(500);
+  26   2              }
+  27   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     88    ----
+   CONSTANT SIZE    =     15    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

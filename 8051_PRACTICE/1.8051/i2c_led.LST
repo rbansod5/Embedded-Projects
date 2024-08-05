@@ -1,0 +1,16 @@
+C51 COMPILER V7.08   I2C_LED                                                               11/29/2023 20:08:43 PAGE 1   
+
+
+C51 COMPILER V7.08, COMPILATION OF MODULE I2C_LED
+OBJECT MODULE PLACED IN i2c_led.OBJ
+COMPILER INVOKED BY: C:\Keil2\C51\BIN\C51.EXE i2c_led.c BROWSE DEBUG OBJECTEXTEND TABS(8)
+
+line level    source
+
+   1          #include <reg51.h>#include"delay.h"#include"i2c.h"//#include"i2c_defines.h"#define LED P2sbit SW1=P0
+             -^3;sbit SW2=P0^4;int main(){int i=0;char ch=0;i2cstart();while(1){if(SW1==0){i++;i2cwrite(i^0x0f);LED=i2cre
+             -ad();}else if(SW2==0){i--;i2cwrite(i^0x0f);LED=i2cread();}i2cstop();}}
+*** ERROR C141 IN LINE 1 OF C:\KEIL2\C51\INC\REG51.H: syntax error near '#'
+*** ERROR C129 IN LINE 1 OF C:\KEIL2\C51\INC\REG51.H: missing ';' before '<string>'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)

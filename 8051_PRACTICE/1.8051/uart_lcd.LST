@@ -1,0 +1,47 @@
+C51 COMPILER V7.08   UART_LCD                                                              11/23/2023 18:20:20 PAGE 1   
+
+
+C51 COMPILER V7.08, COMPILATION OF MODULE UART_LCD
+OBJECT MODULE PLACED IN uart_lcd.OBJ
+COMPILER INVOKED BY: C:\Keil2\C51\BIN\C51.EXE uart_lcd.c BROWSE DEBUG OBJECTEXTEND TABS(8)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"delay.h"
+   3          #include"lcd.h"
+   4          #include"uart.h"
+   5          int main() 
+   6          {
+   7   1      char  p[20];
+   8   1      char ch;
+   9   1      int i=0;
+  10   1      while(1)
+  11   1      {
+  12   2      while((ch=UART_Rxchar())!='\r')
+  13   2      {
+  14   3      p[i++]=ch;
+  15   3      }
+  16   2      p[i]='\0';
+  17   2      
+  18   2      
+  19   2      UART_Str(p);
+  20   2      
+  21   2      cmdlcd(0x80);
+  22   2      strlcd(p);
+  23   2      }
+  24   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     60    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      22
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

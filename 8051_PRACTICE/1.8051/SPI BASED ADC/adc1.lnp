@@ -1,0 +1,6 @@
+"ADC_TEST.obj",
+"delay.obj",
+"lcd.obj",
+"mcp3204.obj" 
+TO "adc1" 
+RAMSIZE(256) 

@@ -1,0 +1,64 @@
+C51 COMPILER V9.02   LED_ARMSTRONG                                                         11/20/2023 20:42:24 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE LED_ARMSTRONG
+OBJECT MODULE PLACED IN led_armstrong.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE led_armstrong.c OMF2 BROWSE DEBUG
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #include<math.h>
+   3          #include"delay.h"
+   4          #define LED P1
+   5          int armstrong(int num)
+   6          {       int sum=0;
+   7   1              int cnt=0;
+   8   1              int temp=num;
+   9   1              while(num%10)
+  10   1              {
+  11   2                      cnt++;
+  12   2                      num/=10;
+  13   2              }
+  14   1              while(temp)
+  15   1              {
+  16   2                      int rem;
+  17   2                      rem=temp%10;
+  18   2                      sum=sum+pow(rem,cnt);
+  19   2                      temp/=10;
+  20   2              }
+  21   1              return sum;
+  22   1      }
+  23          int main()
+  24          {
+  25   1              int min,max;
+  26   1              
+  27   1              min=1;
+  28   1              max=255;
+  29   1              while(1)
+  30   1              {
+  31   2             for(min;min<=max;min++)
+  32   2              {
+  33   3       LED=0x0f^armstrong(min);
+  34   3       delay_ms(3000);
+  35   3              }
+  36   2              }
+  37   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    231    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

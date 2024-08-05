@@ -1,0 +1,95 @@
+C51 COMPILER V9.02   LCD                                                                   12/02/2023 18:12:59 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE LCD
+OBJECT MODULE PLACED IN lcd.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE lcd.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"delay.h"
+   3          #include"lcd.h"
+   4            sbit RS=P3^4;
+   5          sbit RW=P3^5;
+   6          sbit EN=P3^6;
+   7          
+   8          char cgram_lut[]={0x17,0x14,0x14,0x1f,0x05,0x05,0x1d,0x00};
+   9          void cmdlcd(char cmd)
+  10          {
+  11   1              RS=0;           // COMMAND REGISTER WILL OPEN
+  12   1              LCD_DATA=cmd;
+  13   1              RW=0;           // WRITE MODE, 8 BIT INFO(CMD) IS WRITING ON LCD
+  14   1              EN=1;
+  15   1              delay_ms(2);
+  16   1              EN=0;           // To Process the info
+  17   1      }       
+  18          void datalcd(char dat)
+  19          {
+  20   1              RS=1;           // DATA REGISTER WILL OPEN
+  21   1              LCD_DATA=dat;
+  22   1              RW=0;           // WRITE MODE, 8 BIT INFO(CMD) IS WRITING ON LCD
+  23   1              EN=1;
+  24   1              delay_ms(2);
+  25   1              EN=0;           // To Process the info
+  26   1      }       
+  27          void initlcd(void)
+  28          {
+  29   1              cmdlcd(0x38);//5x7 pixel, 8-bit mode, 2lines
+  30   1              cmdlcd(0x10);//display off , cursor off
+  31   1              cmdlcd(0x01);//clear the screen
+  32   1              cmdlcd(0x0e);//displayon cursor on
+  33   1              cmdlcd(0x80);//first line first position
+  34   1      }
+  35          void strlcd(char *str/*VECTOR*/)
+  36          {
+  37   1              while(*str!='\0')//'V','E','C','T','O','R','\0' -  LOOP FAILS
+  38   1              {
+  39   2                      datalcd(*str);//1('V')
+  40   2                      str++;//base address will increment
+  41   2              }
+  42   1      }
+  43          void integerlcd(int num )
+  44          {
+  45   1              char a[10], index=0;
+  46   1              if(num==0)
+  47   1                      datalcd(0+48);
+  48   1              while(num)//123 is not zero //12 is not zero // 1 is not zero // 0 is zero. So, cond fails,breaks the loo
+             -p
+  49   1              {
+  50   2                      a[index++]=num%10;//(1)123%10 = > a[0]=3, index=1  (2)12%10=2 => a[1]=2 , index=2
+  51   2                      //(3)1%10=1 => a[2]=1,index=3
+  52   2                      num=num/10;     //(1) 123/10=12 (2)12/10=1  (3) 1/10=0 
+  53   2              }
+  54   1              for(--index;index>=0;index--)//index ==>3-1=2  //2-1=1                          //1-1=0
+C51 COMPILER V9.02   LCD                                                                   12/02/2023 18:12:59 PAGE 2   
+
+  55   1                      datalcd(a[index]+48);   //a[2]+48=>1+48='1'//a[1]+48=2+48='2'   //a[0]+48=3+48='3'
+  56   1      }
+  57          
+  58          /* Store Customzied characters hexadecimal values in CGRAM */
+  59          void BuildCgram(void)
+  60          {
+  61   1              char i=0;
+  62   1              cmdlcd(0x40);//CGRAM ADDRESS STARTS FROM 0X40 - 0x47
+  63   1              for(i=0;i<8;i++)
+  64   1                      datalcd(cgram_lut[i]);
+  65   1      }
+  66          
+  67          
+  68           
+  69           
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    221    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8      17
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,22 @@
+#include<LPC21xx.h>
+#include"defines.h"
+#include"delay.h"
+#define LED 0
+#define SW1 8
+#define sw2 9
+int main()
+{
+int cnt=0;
+WRITEBYTE(IODIR0,0,0xff)
+WRITEBYTE(IOPIN0,LED,0x0f)
+while(1)
+{
+if(READBIT(IOPIN0,sw1)==0)
+{
+while(READBIT(IOPIN0,sw1)==0);
+{
+cnt++;
+if(cnt<=255)
+WRITBYTE(IOPIN0,LED<CNT^0x0f);
+}
+else if

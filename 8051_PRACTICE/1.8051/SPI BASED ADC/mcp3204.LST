@@ -1,0 +1,82 @@
+C51 COMPILER V7.08   MCP3204                                                               12/08/2023 19:46:16 PAGE 1   
+
+
+C51 COMPILER V7.08, COMPILATION OF MODULE MCP3204
+OBJECT MODULE PLACED IN mcp3204.OBJ
+COMPILER INVOKED BY: C:\Keil2\C51\BIN\C51.EXE mcp3204.c BROWSE DEBUG OBJECTEXTEND TABS(8)
+
+line level    source
+
+   1          #include "types.h"
+   2          #include <reg51.h>
+   3          
+   4          sbit clk=P3^0;
+   5          sbit dout=P3^1;
+   6          sbit din=P3^2;
+   7          sbit _cs=P3^3;
+   8          
+   9          f32 Read1_ADC_MCP3204(u8 channelNo)
+  10          {
+  11   1         u8 i;
+  12   1         u16 adcVal=0;
+  13   1         f32 analogReading=0.0;
+  14   1       
+  15   1         _cs=clk=dout=din=1; //initialized to all high from 8051 master point of view
+  16   1      
+  17   1         _cs=0; //master make _cs low to activate/select slave and start communication
+  18   1         //din=1; //as initialized
+  19   1         clk=0; clk=1; //master issues 1st clock cycle to send start bit '1' across Din
+  20   1      
+  21   1         //din=1; //continued as high as initialized
+  22   1         clk=0; clk=1; //master issue 2nd clock cycle  to send single-ended mode of conversion
+  23   1                       //bit '1' across din
+  24   1         //din=1; //continues as high as initialized
+  25   1         clk=0; clk=1; //master issues 3rd clock cycle to send D2 don't care channel selection
+  26   1                       //bit 
+  27   1                                 //    channelNo
+  28   1                                 //           d1 d0
+  29   1         din=((channelNo>>1)&1); //0 = 000000 0  0
+  30   1                                 //1 = 000000 0  1
+  31   1                                 //2 = 000000 1  0
+  32   1                                 //3 = 000000 1  1   
+  33   1         clk=0; clk=1; //master issues 4th clock cycle to send D1 channel selection bit
+  34   1      
+  35   1         din=channelNo&1;
+  36   1         clk=0; clk=1; //master issues 5th clock cycle to send D0 channel selection bit,
+  37   1                       //& as well start sampling analog signal across that selected
+  38   1                       //channel
+  39   1         clk=0; clk=1; //master issue 6th clock cycle to continue and end analog signal sampling
+  40   1         clk=0; clk=1;  //master issue 7th clock cycle for mcp3204 to output NULL bit across dout
+  41   1                       //as an indication that sampling  & holding of analog signal completed
+  42   1         
+  43   1         for(i=0;i<12;i++)
+  44   1         {
+  45   2           clk=0;
+  46   2           if(dout) //check the serial digital data msb to lsb order
+  47   2             adcVal|=(1<<(11-i)); //update digital data in correction position of variable
+  48   2           clk=1; 
+  49   2         }
+  50   1      
+  51   1         _cs=1; //master make _cs end to deactivate/deselect slave and stop communication
+  52   1      
+  53   1         //now processing on digital data collected in adcVal using Resolution expression
+  54   1         analogReading=adcVal*(5.0/4096);
+  55   1        
+C51 COMPILER V7.08   MCP3204                                                               12/08/2023 19:46:16 PAGE 2   
+
+  56   1         return analogReading;
+  57   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    133    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
