@@ -1,0 +1,72 @@
+********************************************************
+Customer Id: 1
+Customer Name: RAHUL SHRIDHAR BANSOD
+Customer Contact Number: 7620384339
+Customer Email: rahulsamyak.bansod@gmail.com
+Product Name: hair oil
+product Qunatity : 2
+Product Price: 180.00
+Product Name: milk
+product Qunatity : 1
+Product Price: 72.00
+Product Name: detergent
+product Qunatity : 1
+Product Price: 78.00
+
+Total Bill: 330.00₹
+Current Time: Mon Aug  5 16:33:03 2024
+
+
+********************************************************
+
+********************************************************
+Customer Id: 1
+Customer Name: RAHUL SHRIDHAR BANSOD
+Customer Contact Number: 7620384339
+Customer Email: rahulsamyak.bansod@gmail.com
+Product Name: hair oil
+product Qunatity : 2
+Product Price: 180.00
+Product Name: milk
+product Qunatity : 1
+Product Price: 72.00
+Product Name: detergent
+product Qunatity : 1
+Product Price: 78.00
+
+Total Bill: 330.00₹
+Current Time: Mon Aug  5 16:33:09 2024
+
+
+********************************************************
+
+********************************************************
+Customer Id: 1
+Customer Name: RAHUL SHRIDHAR BANSOD
+Customer Contact Number: 7620384339
+Customer Email: rahulsamyak.bansod@gmail.com
+Product Name: hair oil
+product Qunatity : 1
+Product Price: 90.00
+Product Name: detergent
+product Qunatity : 1
+Product Price: 78.00
+Product Name: shampoo
+product Qunatity : 1
+Product Price: 4.00
+Product Name: Bucket(30L)
+product Qunatity : 1
+Product Price: 199.00
+Product Name: notebook(200Pages)
+product Qunatity : 1
+Product Price: 65.30
+Product Name: Toothbrush
+product Qunatity : 1
+Product Price: 20.00
+
+Total Bill: 456.30₹
+Current Time: Mon Aug  5 16:35:59 2024
+
+
+********************************************************
+

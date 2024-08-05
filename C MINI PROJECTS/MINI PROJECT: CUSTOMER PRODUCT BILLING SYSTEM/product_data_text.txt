@@ -1,0 +1,13 @@
+1,hair oil,102,90.00
+2,detergent,81,78.00
+3,shampoo,146,4.00
+4,milk,100,72.00
+5,Toothbrush,299,20.00
+6,bottle(1L),27,299.00
+7,Bucket(30L),345,199.00
+8,Handwash(250ml),198,59.00
+9,sanitizer(200ml),377,60.00
+10,colddrink(200ml),200,20.00
+11,notebook(200Pages),58,65.30
+12,Needle,9997,1.50
+13,feviQuick,200,5.00

@@ -1,0 +1,16 @@
+in this file i have design two file
+
+******************************************************************
+1. binary 
+for execute this files
+
+use $cc main_bin.c definations.c
+
+******************************************************************
+
+2. text 
+for execute this files
+
+use $cc main_text.c definations.c
+
+******************************************************************
