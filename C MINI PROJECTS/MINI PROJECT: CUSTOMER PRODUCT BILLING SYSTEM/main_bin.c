@@ -8,7 +8,7 @@
  * @brief     manage and executes other functions
  * @version   0.1v
  * @date      2024-06-06
- * @copyright Copyright (c)  Public
+ * @copyright Copyright (c)Public
  *
  *======================================================================================
  *

@@ -9,7 +9,7 @@
  * @brief     this file manage all function definations          *
  * @version   0.1v                                               *
  * @date      2024-06-06                                         *
- * @copyright Copyright (c) Remiges technologies pvt. Ltd. (2024)*
+ * @copyright Copyright (c)PUBLIC (2024)*
  *****************************************************************
  */
 
