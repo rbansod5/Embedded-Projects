@@ -1,0 +1,20 @@
+#ifndef HEADER_H
+#define HEADER_H
+
+/* predefine headers files */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stddef.h> 
+#include <stdio_ext.h>
+#include <unistd.h>
+#include <time.h>
+
+/* user define header files*/
+#include "library_structure.h"
+#include "colors.h"
+#include "macros.h"
+
+// add more if requires
+
+#endif
