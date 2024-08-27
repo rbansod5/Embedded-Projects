@@ -1,10 +1,9 @@
 /****************************************************************************************
  * @file   library_structure.h
- * @author RAHUL SHRIDHAR BANSOD (https://github.com/rbansod5/Embedded-Projects.git)
- * @brief  This is for design library structure which store information
- *         about book name, Edition, price, publication year, date, flag
+ * @author RAHUL SHRIDHAR BANSOD
+ * @brief  Library structure to store information about books and students
  *
- * @version 0.1
+ * @version 0.2
  * @date 2024-08-13
  *
  * @copyright Copyright (c) 2024 (PUBLIC)
@@ -14,31 +13,39 @@
 #ifndef _LIBRARY_STRUCTURE_H
 #define _LIBRARY_STRUCTURE_H
 
-/* this structure is design for library management*/
-typedef struct library
-{
-    char          *bookName;        // book name 
-    short int      Edition;          // book edition
-    int            price;            // book market price
-    int            publicationYear;  // publication year
-    char           *date;            // issue date 
-    char           flag;             // flag for aviability
-    struct library *lib;
+#include <time.h>  // for date handling
 
-} libraryData; 
+/* Enumeration for book availability status */
+typedef enum {
+    AVAILABLE = 0,
+    ISSUED,
+    RESERVED
+} BookStatus;
+
+/* Structure for managing library book information */
+typedef struct library {
+    char           *bookName;          // Book name 
+    short int       edition;           // Book edition
+    int             price;             // Book market price
+    int             publicationYear;   // Publication year
+    struct tm       issueDate;         // Issue date 
+    BookStatus      status;            // Availability status
+    struct library *next;              // Pointer to next book in the list
+} LibraryData; 
  
-typedef struct student
-{
-    char            *studentName;
-    long int        contactNo;
-    char            *address;
-    struct student  *next;
+/* Structure for managing student information */
+typedef struct student {
+    int             rollNumber;
+    char           *studentName;       // Student name
+    long int        contactNo;         // Contact number
+    char           *address;           // Address
+    struct student *next;              // Pointer to next student in the list
+} studentData;
 
-}studentData;
-#endif
-typedef enum
-{
-    SUCCESS=0,
+/* Enumeration for function return status */
+typedef enum {
+    SUCCESS = 0,
     FAILED
-}RET;
+} RET;
 
+#endif 

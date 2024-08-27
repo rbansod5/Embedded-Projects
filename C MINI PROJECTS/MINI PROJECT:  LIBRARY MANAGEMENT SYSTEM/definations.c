@@ -1,7 +1,12 @@
-
 #include "header.h"
-libraryData *library_data;
-studentData *student;
+#include <ctype.h>
+/* Function to display the menu */
+void displayMenu()
+{
+    printf("Please enter your choice:\n");
+    printf(MAGENTA BBLACK "1. Add Member Name\n2. Edit Member Name\n3. Delete Member Name\n4. Display List of Members\n11. Exit\n" RESET);
+}
+
 void projectLable()
 {
     printf(RED BBLACK "   _     _ _                          \n");
@@ -30,55 +35,152 @@ studentData *addMember(studentData *student)
     newnode = malloc(sizeof(studentData));
     if (newnode == NULL)
     {
-        printf("no node created\n");
-        exit(1);
+        printf("In defination.c: newnode is not created");
+        logError(__LINE__, "In defination.c: newnode is not created");
+        return NULL;
     }
     else
     {
-        printf("enter book name\n");
-        newnode->studentName = getstring();
+        printf("Enter student Roll Number\n");
+        scanf("%d", &newnode->rollNumber);
+        fflush(stdin);
         getchar();
-    lable:
-        printf("enter contact number\n");
-        scanf("%ld", &newnode->contactNo);
-        if (validate(newnode->contactNo) == 1)
+        printf("Enter student name\n");
+        newnode->studentName = getstring();
+
+        do
         {
-            goto lable;
-        }
-        printf("enter address of student\n");
+            printf("Enter contact number\n");
+            scanf("%ld", &newnode->contactNo);
+            __fpurge(stdin);
+        } while (validate(newnode->contactNo) == 1);
+
+        printf("Enter address of student\n");
+        getchar();
+        newnode->address = getstring();
+        newnode->next = NULL;
+
         if (student == NULL)
         {
             student = newnode;
         }
         else
         {
-            studentData *pTemperory = student;
-            for (; pTemperory != NULL; pTemperory = pTemperory->next);
-            pTemperory->next = newnode;
+            studentData *pTemporary = student;
+            while (pTemporary->next != NULL)
+            {
+                pTemporary = pTemporary->next;
+            }
+            pTemporary->next = newnode;
         }
     }
     return student;
 }
 
-/* validate */
-int validate(int i_information)
+studentData *deleteMember(studentData *student)
 {
-    char *i_Data = itoa(i_information);
-    int count = 0;
-    int length = sizeof(i_information);
-    while (*i_Data != NULL)
+    studentData *temporary = student;
+    int rollNumber, count = 0;
+    printf("Please Enter Roll Number to delete\n");
+    scanf("%d", &rollNumber);
+    for (; rollNumber != temporary->next->rollNumber; temporary = temporary->next)
+        ;
+    if (temporary->next == NULL)
     {
-        if ('48' >= i_Data[count] && '57' <= i_Data[count])
-        {
-            count++;
-        }
-        if (count == length-1)
-        {
-            return 0;
-        }
-        else
-        {
-            return 1;
-        }
+        logError(__LINE__, "defination.c : temporary->next=NULL");
     }
+    else
+    {
+        free(temporary->address);
+        free(temporary->studentName);
+        temporary->next = temporary->next->next;
+    }
+    return student;
 }
+
+void displayMember(studentData *student)
+{
+    studentData *temporary = student;
+    if (NULL == temporary)
+    {
+        printf("defination.c : student data structure is empty\n");
+        logError(__LINE__, "defination.c : student data structure is empty\n");
+        return;
+    }
+    for (; NULL != temporary->next; temporary = temporary->next)
+    {
+        printf("%-20d  %-20s | %-20ld | %-20s |\n", temporary->rollNumber, temporary->studentName,
+               temporary->contactNo, temporary->address);
+    }
+    printf("%-20d %-20s %-20ld %-20s\n", temporary->rollNumber, temporary->studentName,
+           temporary->contactNo, temporary->address);
+}
+
+long int validate(long int contactNo)
+{
+    bool isInteger = true;
+    int count = 0;
+    char *arg = itoa(contactNo);
+    while (*arg)
+    {
+        if (*arg < '0' || *arg > '9')
+        {
+            isInteger = false;
+            break;
+        }
+        arg++;
+        count++;
+    }
+    if (10 == count)
+    {
+        return (isInteger ? 0 : 1);
+    }
+    else
+    {
+        logInfo(__LINE__, "In defination.c : this is not contact number");
+    }
+    return 1;
+}
+
+char *getstring()
+{
+    char *pString = NULL;
+    int count = 0;
+    char character;
+
+    do
+    {
+        character = getchar();
+        pString = realloc(pString, count + 2);
+        pString[count++] = character;
+    } while (character != '\n');
+
+    pString[count - 1] = '\0'; // Replace '\n' with '\0'
+    return pString;
+}
+
+char *itoa(long int number)
+{
+    long int temp = number;
+    int digits = 0;
+    while (temp != 0)
+    {
+        temp /= 10;
+        digits++;
+    }
+
+    char *p = malloc(digits + 1);
+    if (p == NULL)
+    {
+        return NULL; // Check for allocation failure
+    }
+    p[digits] = '\0'; // Null-terminate the string
+    while (digits > 0)
+    {
+        p[--digits] = (number % 10) + '0';
+        number /= 10;
+    }
+
+    return p;
+}
+

@@ -3,7 +3,9 @@
 
 /* predefine headers files */
 #include <stdio.h>
+#include <stdio_ext.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stddef.h> 
 #include <stdio_ext.h>
@@ -14,6 +16,8 @@
 #include "library_structure.h"
 #include "colors.h"
 #include "macros.h"
+#include "log.h"
+#include "definations.h"
 
 // add more if requires
 
