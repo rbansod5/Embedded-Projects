@@ -1,8 +1,5 @@
-52: Invalid input. Please enter a number.
+107: defination.c : student data structure is empty
 
 52: Invalid input. Please enter a number.
 
-106: defination.c : student data structure is empty
-
-106: defination.c : student data structure is empty
-
+120: Roll number not found in the list

@@ -48,8 +48,8 @@ int main()
 
         if (scanf("%d", &choice) != 1)
         {
-            printf("Invalid input. Please enter a number.\n");
-            logError(__LINE__, "Invalid input. Please enter a number.\n");
+            printf("Invalid input, Please enter a number.\n");
+            logError(__LINE__, "In main.c : Invalid input, Please enter a number.\n");
             while (getchar() != '\n')
                 ; // Clear the input buffer
             continue;
@@ -67,20 +67,22 @@ int main()
             break;
         case 2:
             // Edit member name functionality here
+            student = editMember(student);
             break;
         case 3:
             // Delete member name functionality here
+            student = deleteMember(student);
             break;
         case 4:
             // Display list of members functionality here
             displayMember(student);
             break;
         case 11:
-            logInfo(__LINE__, "Exit the program\n");
+            logInfo(__LINE__, "In main.c : Exit the program\n");
             printf(RED BBLACK "Exiting...\n" RESET);
             exit(0); // Exit the program
         default:
-            logInfo(__LINE__, "Please enter a valid choice.\n");
+            logInfo(__LINE__, "In main.c : Please enter a valid choice.\n");
             printf(YELLOW BBLACK "Please enter a valid choice.\n" RESET);
         }
     }

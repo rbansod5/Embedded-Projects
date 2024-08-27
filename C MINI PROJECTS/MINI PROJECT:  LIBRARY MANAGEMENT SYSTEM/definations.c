@@ -1,5 +1,5 @@
 #include "header.h"
-#include <ctype.h>
+
 /* Function to display the menu */
 void displayMenu()
 {
@@ -7,6 +7,7 @@ void displayMenu()
     printf(MAGENTA BBLACK "1. Add Member Name\n2. Edit Member Name\n3. Delete Member Name\n4. Display List of Members\n11. Exit\n" RESET);
 }
 
+/* Function to display colourfull project name display */
 void projectLable()
 {
     printf(RED BBLACK "   _     _ _                          \n");
@@ -29,6 +30,7 @@ void projectLable()
     printf("         |___/                       \n" RESET);
 }
 
+/* Function for adding new members in list */
 studentData *addMember(studentData *student)
 {
     studentData *newnode = NULL;
@@ -77,6 +79,7 @@ studentData *addMember(studentData *student)
     return student;
 }
 
+/* Function for deleting specific member from the list */
 studentData *deleteMember(studentData *student)
 {
     studentData *temporary = student;
@@ -98,6 +101,44 @@ studentData *deleteMember(studentData *student)
     return student;
 }
 
+/* Function for Edit member data */
+studentData *editMember(studentData *student)
+{
+    studentData *temporary = student;
+    int rollNumber;
+    printf("Please Enter Roll Number for Edit data\n");
+    scanf("%d", &rollNumber);
+
+    // Find the node with the specified roll number
+    for (; temporary != NULL && rollNumber != temporary->rollNumber; temporary = temporary->next)
+        ;
+
+    if (temporary == NULL)
+    {
+        logError(__LINE__, "Roll number not found in the list");
+        return student; // Return early if the roll number isn't found
+    }
+    else
+    {
+        free(temporary->studentName); // Free the old name and assign a new one
+        printf("Enter student name\n");
+        temporary->studentName = getstring();
+        do
+        {
+            printf("Enter contact number\n");
+            scanf("%ld", &temporary->contactNo);
+            __fpurge(stdin);
+        } while (validate(temporary->contactNo) == 1); // Edit the contact number with validation
+
+        free(temporary->address); // Free the old address and assign a new one
+        printf("Enter address of student\n");
+        getchar();
+        temporary->address = getstring();
+    }
+    return student;
+}
+
+/* Function to display member list */
 void displayMember(studentData *student)
 {
     studentData *temporary = student;
@@ -116,6 +157,83 @@ void displayMember(studentData *student)
            temporary->contactNo, temporary->address);
 }
 
+LibraryData *addLibraryData(LibraryData *library)
+{
+    //
+    LibraryData *newnode = NULL;
+    newnode = malloc(sizeof(LibraryData));
+    if (newnode == NULL)
+    {
+        printf("In defination.c: newnode is not created");
+        logError(__LINE__, "In defination.c: newnode is not created");
+        return NULL;
+    }
+    else
+    {
+        printf("Enter Book Name : \n");
+        newnode->bookName = getstring();
+        fflush(stdin);
+        getchar();
+        printf("Enter Book Edition : \n");
+        scanf("%hd", &newnode->edition);
+        fflush(stdin);
+        // getchar();
+        printf("Enter Book Price : \n");
+        scanf("%d", &newnode->price);
+
+        printf("Enter Publication Year\n");
+        scanf("%d", &newnode->publicationYear);
+
+        printf("Enter Date of issue\n");
+        //
+        newnode->status = AVAILABLE;
+
+        if (NULL == library)
+        {
+            library = newnode;
+        }
+        else
+        {
+            LibraryData *pTemporary = library;
+            while (NULL != pTemporary->next)
+            {
+                pTemporary = pTemporary->next;
+            }
+            pTemporary->next = newnode;
+        }
+    }
+    return library;
+}
+
+LibraryData *editLibraryData(LibraryData *library)
+{
+    //
+}
+
+LibraryData *deleteLibraryData(LibraryData *library)
+{
+    //
+}
+
+void displayLibraryData(LibraryData *library)
+{
+    //
+}
+
+/**
+ * To get a string which have real time details like Date and Time
+ */
+char *currentTime()
+{
+    
+    time_t currentTime;                             // Create a time_t variable to store the current time
+    time(&currentTime);                             // Get the current time
+    struct tm *localTime = localtime(&currentTime); // Convert the time to local time
+    char *realTime = asctime(localTime);            // Print the current date and time
+    return realTime;
+}
+
+/* Function to Validate Contact Number */
 long int validate(long int contactNo)
 {
     bool isInteger = true;
@@ -142,6 +260,7 @@ long int validate(long int contactNo)
     return 1;
 }
 
+/* Function for get dynamically allocate string */
 char *getstring()
 {
     char *pString = NULL;
@@ -159,6 +278,7 @@ char *getstring()
     return pString;
 }
 
+/* Function to convert interger to ascii/string */
 char *itoa(long int number)
 {
     long int temp = number;
@@ -183,4 +303,3 @@ char *itoa(long int number)
 
     return p;
 }
-

@@ -11,6 +11,7 @@
 #include <stdio_ext.h>
 #include <unistd.h>
 #include <time.h>
+#include <ctype.h> 
 
 /* user define header files*/
 #include "library_structure.h"
