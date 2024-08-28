@@ -1,7 +1,6 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-/* predefine headers files */
 #include <stdio.h>
 #include <stdio_ext.h>
 #include <stdlib.h>
