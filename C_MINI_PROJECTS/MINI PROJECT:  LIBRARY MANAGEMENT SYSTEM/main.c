@@ -25,8 +25,8 @@
 #include "header.h"      // include all required header files
 #include "definations.h" // include definitions and macros
 
-LibraryData *library_data;
-studentData *student;
+LibraryData *library_data = NULL;
+studentData *student = NULL;
 
 /* Function declarations */
 void displayMenu();
@@ -77,6 +77,20 @@ int main()
             // Display list of members functionality here
             displayMember(student);
             break;
+        case 5:
+            library_data = addLibraryData(library_data);
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        case 8:
+            displayLibraryData(library_data);
+            break;
+        case 9:
+            break;
+        case 10:
+            break;
         case 11:
             logInfo(__LINE__, "In main.c : Exit the program\n");
             printf(RED BBLACK "Exiting...\n" RESET);
@@ -84,6 +98,7 @@ int main()
         default:
             logInfo(__LINE__, "In main.c : Please enter a valid choice.\n");
             printf(YELLOW BBLACK "Please enter a valid choice.\n" RESET);
+          
         }
     }
     return 0;

@@ -3,8 +3,10 @@
 /* Function to display the menu */
 void displayMenu()
 {
-    printf("Please enter your choice:\n");
-    printf(MAGENTA BBLACK "1. Add Member Name\n2. Edit Member Name\n3. Delete Member Name\n4. Display List of Members\n11. Exit\n" RESET);
+    printf(BBLACK "Please enter your choice:\n" RESET);
+    printf(MAGENTA BBLACK "1. Add Member Name\n2. Edit Member Name\n3. Delete Member Name\n4. Display List of Members\n" RESET);
+    printf(BLUE BBLACK "5. Add Book Data\n6. Display Book Data\n" RESET);
+    printf(RED BBLACK "11. Exit\n" RESET);
 }
 
 /* Function to display colourfull project name display */
@@ -55,7 +57,7 @@ studentData *addMember(studentData *student)
             printf("Enter contact number\n");
             scanf("%ld", &newnode->contactNo);
             __fpurge(stdin);
-        } while (validate(newnode->contactNo) == 1);
+        } while (1 == validate(newnode->contactNo));
 
         printf("Enter address of student\n");
         getchar();
@@ -173,7 +175,6 @@ LibraryData *addLibraryData(LibraryData *library)
         printf("Enter Book Name : \n");
         newnode->bookName = getstring();
         fflush(stdin);
-        getchar();
         printf("Enter Book Edition : \n");
         scanf("%hd", &newnode->edition);
         fflush(stdin);
@@ -217,7 +218,15 @@ LibraryData *deleteLibraryData(LibraryData *library)
 
 void displayLibraryData(LibraryData *library)
 {
-    //
+    LibraryData *pTemporary = library;
+    for (; NULL != pTemporary->next; pTemporary = pTemporary->next)
+    {
+        printf("%-20s %-20d %-20hd %-20d \n", pTemporary->bookName,
+               pTemporary->edition, pTemporary->publicationYear, pTemporary->price);
+    }
+    printf("%-20s %-20d %-20hd %-20d \n", pTemporary->bookName,
+           pTemporary->edition, pTemporary->publicationYear, pTemporary->price);
+    return;
 }
 
 /**
@@ -225,7 +234,7 @@ void displayLibraryData(LibraryData *library)
  */
 char *currentTime()
 {
-    
+
     time_t currentTime;                             // Create a time_t variable to store the current time
     time(&currentTime);                             // Get the current time
     struct tm *localTime = localtime(&currentTime); // Convert the time to local time
@@ -238,15 +247,15 @@ long int validate(long int contactNo)
 {
     bool isInteger = true;
     int count = 0;
-    char *arg = itoa(contactNo);
-    while (*arg)
+    char *pString = itoa(contactNo);
+    while (*pString)
     {
-        if (*arg < '0' || *arg > '9')
+        if (*pString < '0' || *pString > '9')
         {
             isInteger = false;
             break;
         }
-        arg++;
+        pString++;
         count++;
     }
     if (10 == count)
