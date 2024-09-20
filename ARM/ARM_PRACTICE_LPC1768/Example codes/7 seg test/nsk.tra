@@ -1,0 +1,19 @@
+*** Creating Trace Output File 'nsk.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"startup_lpc17xx.o"'
+### List of Objects: adding '"spi_test.o"'
+### ADS-LD Command completed:
+--device DARMP1 "startup_lpc17xx.o" "spi_test.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\nsk.map" -o "nsk.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'nsk.axf'
+### ADS-LD Command File: 'nsk.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'nsk.lnp', Handle=0x00000430
+### Writing '.lnp' file
+### ADS-LD Command file 'nsk.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

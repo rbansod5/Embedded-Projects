@@ -1,0 +1,31 @@
+#include "i2c.h"
+#include "lcd.h"
+#include"i2c_defines.h"
+
+main()
+{
+	unsigned char ch;
+
+	LCD_Init();
+	Write_CMD_LCD(0x80);
+	Write_str_LCD("EEPROM TEST:");
+	ch=0+48;
+	 
+	i2cDevByteWrite(0xA0,0x00,ch);
+	ch = i2cDevRandomRead(0xA0,0x00);
+    Write_CMD_LCD(0xC0);	
+	Write_DAT_LCD(ch);
+	 
+	ch++;
+    i2cDevByteWrite(0xA0,0x0A,ch);
+	ch = i2cDevRandomRead(0xA0,0x0A);
+    Write_CMD_LCD(0xC3);	
+	Write_DAT_LCD(ch);
+ 
+
+	//Write_CMD_LCD(0xC6);
+    //Write_DAT_LCD(ch);
+
+     
+	while(1);
+}

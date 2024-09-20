@@ -1,4 +1,0 @@
-"delay.obj",
-"i2c.obj" 
-TO "8051" 
-RAMSIZE(256) 

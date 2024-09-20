@@ -9,7 +9,7 @@ void logInfo(int line, char *string)
     FILE *fpSource = NULL;
     char buffer[256]; // Allocate a fixed-size buffer
 
-    snprintf(buffer, sizeof(buffer), "%d: %s %s \n", line, string, currentTime());
+    snprintf(buffer, sizeof(buffer), "%d: %s %s\n", line, string,currentTime());
     fpSource = fopen("logEntry.txt", "a");
     if (fpSource != NULL)
     {
@@ -28,7 +28,7 @@ void logError(int line, char *error)
     FILE *fpError = NULL;
     char buffer[256]; // Allocate a fixed-size buffer
 
-    snprintf(buffer, sizeof(buffer), "%d: %s %s \n", line, error, currentTime());
+    snprintf(buffer, sizeof(buffer), "%d: %s %s\n", line, error,currentTime());
     fpError = fopen("error.txt", "a");
     if (fpError != NULL)
     {

@@ -1,0 +1,21 @@
+
+
+/*******************
+
+Example code for LED Test
+
+
+This code will toggle two LEDs which are connected to the 
+CoiNel LPC1768 HPLUS-EX Board
+
+
+Connections
+
+LED0(D7)	P1.29
+
+
+PORT PIN ----\/\/\/----|LED|-----GND
+	     Resistor		    
+
+*********************/
+

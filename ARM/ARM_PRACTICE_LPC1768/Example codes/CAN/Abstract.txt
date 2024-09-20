@@ -1,0 +1,28 @@
+The 'CAN' project is a simple program for NXP LPC1766 
+using Keil 'MCB1700' Evaluation Board and demonstrates 
+the use of the CAN peripheral.
+
+Example functionality:                                                   
+ - Clock Settings:
+   - XTAL    =            12.00 MHz
+   - SYSCLK  = CCLK      100.00 MHz
+   - PCLK    = CCLK/4  =  25.00 MHz
+
+ - CAN controller speed: 500 kbits
+ - send converted analog value in first byte in CAN message
+   from CAN controller #2 to CAN Controller #1 
+ - display received and transmitted byte values on GLCD display
+ - display received byte on LEDs
+
+This example shows how to use CAN peripheral and how to 
+simulate analog input in uVision.
+
+You may change the value of analog input with potentiometer
+
+The CAN example is available in different targets:
+  Simulator:   - configured for software Simulator
+  MCB1700:     - runs from Internal Flash located on chip
+                 (used for production or target debugging)
+
+
+Note: Loopback between CAN1 and CAN2 is necessary for this demo

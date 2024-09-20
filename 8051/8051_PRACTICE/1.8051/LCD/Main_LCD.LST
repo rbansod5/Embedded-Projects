@@ -1,0 +1,41 @@
+C51 COMPILER V9.02   MAIN_LCD                                                              12/09/2023 19:39:07 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN_LCD
+OBJECT MODULE PLACED IN Main_LCD.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Main_LCD.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include"lcd.h"
+   2          main()
+   3          {
+   4   1      //      signed int i;
+   5   1              LCD_Init();//LCD initialization
+   6   1         Write_CMD_LCD(0x80);//selecting starting line and staring pos
+   7   1         Write_DAT_LCD('A');//ASCII value of the character to be //displayed
+   8   1              Write_DAT_LCD('B');
+   9   1          Write_CMD_LCD(0xC0);
+  10   1              Write_str_LCD("INDIA");
+  11   1          Write_CMD_LCD(0x82);
+  12   1          Write_int_LCD(123);
+  13   1          
+  14   1              Write_CMD_LCD(0x87);
+  15   1              Write_float_LCD(12.345,3);
+  16   1              while(1);
+  17   1      }
+  18          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     65    ----
+   CONSTANT SIZE    =      6    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,86 @@
+C51 COMPILER V9.02   KEYPAD                                                                12/05/2023 18:24:03 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE KEYPAD
+OBJECT MODULE PLACED IN keypad.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE keypad.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit r0=P2^0;
+   3          sbit r1=P2^1;
+   4          sbit r2=P2^2;
+   5          sbit r3=P2^3;
+   6          sbit c0=P2^4;
+   7          sbit c1=P2^5;
+   8          sbit c2=P2^6;
+   9          sbit c3=P2^7;
+  10          char row_val,col_val;
+  11          char code Key_Val[][4]={'1','2','3',
+  12                                                  '4','5','6',
+  13                                                          '7','8','9',
+  14                                                          '#','0','*'};
+  15          void Row_Init(void)
+  16          {
+  17   1              r0=r1=r2=r3=0;
+  18   1      }
+  19          bit IsKeyPress(void)
+  20          {
+  21   1              return(c0&c1&c2&c3);
+  22   1      }
+  23          char KeyValue(void)
+  24          {
+  25   1              Row_Init();
+  26   1              while((c0&c1&c2&c3));//waiting for key Pressing
+  27   1      
+  28   1              r0=0;r1=r2=r3=1;
+  29   1              if(!(c0&c1&c2&c3))
+  30   1              {
+  31   2                      row_val=0;      
+  32   2                      goto col_check;                 
+  33   2              }
+  34   1              r1=0;r0=r2=r3=1;
+  35   1              if(!(c0&c1&c2&c3))
+  36   1              {
+  37   2                      row_val=1;      
+  38   2                      goto col_check;         
+  39   2              }
+  40   1              r2=0;r0=r1=r3=1;
+  41   1              if(!(c0&c1&c2&c3))
+  42   1              {
+  43   2                      row_val=2;      
+  44   2                      goto col_check;         
+  45   2              }
+  46   1              r3=0;r0=r1=r2=1;
+  47   1              if(!(c0&c1&c2&c3))
+  48   1                      row_val=3;      
+  49   1                      
+  50   1      col_check:
+  51   1              if(c0==0)
+  52   1                      col_val=0;
+  53   1              else if(c1==0)
+  54   1                      col_val=1;
+  55   1              else if(c2==0)
+C51 COMPILER V9.02   KEYPAD                                                                12/05/2023 18:24:03 PAGE 2   
+
+  56   1                      col_val=2;
+  57   1              else    
+  58   1                      col_val=3;
+  59   1              while(!(c0&c1&c2&c3));//waiting for key release
+  60   1              return(Key_Val[row_val][col_val]);
+  61   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    205    ----
+   CONSTANT SIZE    =     12    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

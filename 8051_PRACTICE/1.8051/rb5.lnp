@@ -1,6 +1,0 @@
-"delay.obj",
-"lcd.obj",
-"uart.obj",
-"led_uart.obj" 
-TO "rb5" 
-CODE( 0X0000-0X0FFF )

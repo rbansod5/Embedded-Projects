@@ -1,0 +1,24 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+H:\coinl\NSK LPC1768\LM75 READ\ADC.uvproj
+Project File Date:  07/30/2022
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling startup_LPC17xx.s...
+compiling ADC_LM35.C...
+lcd.h(71): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=648 RO-data=212 RW-data=0 ZI-data=608  
+"ADC.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+assembling startup_LPC17xx.s...
+compiling ADC_LM35.C...
+lcd.h(71): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=648 RO-data=212 RW-data=0 ZI-data=608  
+FromELF: creating hex file...
+"ADC.axf" - 0 Error(s), 1 Warning(s).

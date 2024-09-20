@@ -1,0 +1,59 @@
+C51 COMPILER V9.02   E_CARD                                                                11/28/2023 19:11:31 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE E_CARD
+OBJECT MODULE PLACED IN e_card.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE e_card.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg52.h>
+   2          #include"delay.h"
+   3          #include"uart.h"
+   4          #include"lcd.h"
+   5           #include"e_card_function.h"
+   6           #include"keypad.h"
+   7          
+   8          int main()
+   9          {
+  10   1      char ch=0;
+  11   1      UART_Init();
+  12   1      initlcd();
+  13   1        while(1)
+  14   1      {
+  15   2      cmdlcd(0x01);
+  16   2      cmdlcd(0x80);
+  17   2      strlcd("1.VOTING 2.PAN");
+  18   2      cmdlcd(0xc0);
+  19   2      strlcd("3.ATM 4.EXIT");
+  20   2      delay_ms(5000);
+  21   2       
+  22   2      cmdlcd(0x01);
+  23   2      cmdlcd(0x80);
+  24   2      strlcd("wating...");
+  25   2      delay_ms(2000);
+  26   2      //ch=UART_Rxchar();
+  27   2      ch=keyscan();
+  28   2      switch(ch)
+  29   2      {
+  30   3      case '1': strlcd(" FOR VOTING..."); cmdlcd(0x01);delay_ms(3000);voting();break;
+  31   3      case '2': strlcd("FOR PAN DETAILS");cmdlcd(0x01);delay_ms(3000); pan();break;
+  32   3      case '3': strlcd("FOR ATM..."); delay_ms(3000);cmdlcd(0x01);atm();break;
+  33   3      case '4':strlcd("EXIT...");     delay_ms(3000);break;
+  34   3      }
+  35   2      }
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    195    ----
+   CONSTANT SIZE    =     88    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

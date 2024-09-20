@@ -97,6 +97,7 @@ int main()
             exit(0); // Exit the program
         default:
             logInfo(__LINE__, "In main.c : Please enter a valid choice.\n");
+            printf("%d %s %s\n",__LINE__,"In main.c : Please enter a valid choice.",currentTime());
             printf(YELLOW BBLACK "Please enter a valid choice.\n" RESET);
           
         }

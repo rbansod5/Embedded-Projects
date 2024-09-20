@@ -1,0 +1,1 @@
+--device DARMP1 --pd "__EVAL SETA 1" -g --apcs=interwork -I "C:\Keil\ARM\INC\NXP\LPC17xx" --pd "NO_CRP SETA 1" --list ".\startup_LPC17xx.lst" --xref -o ".\HEX\startup_LPC17xx.o" "..\COMMON\SRC\startup_LPC17xx.s"

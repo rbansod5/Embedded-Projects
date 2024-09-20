@@ -1,0 +1,1 @@
+-c --device DARMP1 -D__EVAL -g -O0 --apcs=interwork -I..\COMMON\INC -I "C:\Keil\ARM\INC\NXP\LPC17xx" -o ".\HEX\system_lpc17xx.o" --omf_browse ".\HEX\system_lpc17xx.crf" --depend ".\HEX\system_lpc17xx.d" "..\COMMON\SRC\system_LPC17xx.c"

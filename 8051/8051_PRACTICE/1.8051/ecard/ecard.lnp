@@ -1,0 +1,9 @@
+"delay.obj",
+"e_card.obj",
+"e_card_function.obj",
+"i2c.obj",
+"keypad.obj",
+"lcd.obj",
+"uart.obj" 
+TO "ecard" 
+RAMSIZE(256) 
