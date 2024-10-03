@@ -1,0 +1,20 @@
+*** Creating Trace Output File '.\OUT\rtc.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\out\startup.o"'
+### List of Objects: adding '".\out\main.o"'
+### ADS-LD Command completed:
+".\out\startup.o" ".\out\main.o" --device DARMP --strict --scatter ".\OUT\rtc.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\LIST\rtc.map" -o ".\OUT\rtc.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\OUT\rtc.axf'
+### ADS-LD Command File: '.\OUT\rtc.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\OUT\rtc.lnp', Handle=0x000000E4
+### Writing '.lnp' file
+### ADS-LD Command file '.\OUT\rtc.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

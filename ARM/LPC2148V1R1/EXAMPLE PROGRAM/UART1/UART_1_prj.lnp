@@ -1,0 +1,9 @@
+--cpu ARM7TDMI
+".\startup.o"
+".\led.o"
+".\main.o"
+".\serial.o"
+--strict --scatter ".\UART_1_prj.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\UART_1_prj.map" -o .\UART_1_prj.axf

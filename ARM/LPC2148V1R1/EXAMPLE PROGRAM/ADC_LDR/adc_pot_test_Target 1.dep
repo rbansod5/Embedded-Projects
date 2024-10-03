@@ -1,0 +1,11 @@
+Dependencies for Project 'adc_pot_test', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Startup.s)(0x4A02A570)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\adc_pot.c)(0x5A4B778A)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\adc_pot.o --omf_browse .\adc_pot.crf --depend .\adc_pot.d)
+I (C:\Documents and Settings\nsk\Desktop\adc_test_code_Pot\prototype.h)(0x5A4B6D8C)
+I (C:\Keil\ARM\Inc\Philips\lpc21xx.h)(0x5A4B6FC5)
+F (.\adc_pot_main.c)(0x59A9036C)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\adc_pot_main.o --omf_browse .\adc_pot_main.crf --depend .\adc_pot_main.d)
+I (C:\Documents and Settings\nsk\Desktop\adc_test_code_Pot\prototype.h)(0x5A4B6D8C)
+I (C:\Keil\ARM\Inc\Philips\lpc21xx.h)(0x5A4B6FC5)
+F (.\lcd.c)(0x5A4B772A)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\lcd.o --omf_browse .\lcd.crf --depend .\lcd.d)
+I (C:\Documents and Settings\nsk\Desktop\adc_test_code_Pot\prototype.h)(0x5A4B6D8C)
+I (C:\Keil\ARM\Inc\Philips\lpc21xx.h)(0x5A4B6FC5)

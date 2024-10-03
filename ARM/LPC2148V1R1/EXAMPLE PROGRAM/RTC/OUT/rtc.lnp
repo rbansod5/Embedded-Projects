@@ -1,0 +1,4 @@
+".\out\startup.o" ".\out\main.o" --device DARMP --strict --scatter ".\OUT\rtc.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\LIST\rtc.map" -o ".\OUT\rtc.axf"

@@ -1,0 +1,22 @@
+*** Creating Trace Output File 'adc_temp_code.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"startup.o"'
+### List of Objects: adding '"adc_temp_main.o"'
+### List of Objects: adding '"adc_temprature.o"'
+### List of Objects: adding '"lcd.o"'
+### ADS-LD Command completed:
+--device DARMP "startup.o" "adc_temp_main.o" "adc_temprature.o" "lcd.o" --strict --scatter "adc_temp_code.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\adc_temp_code.map" -o "adc_temp_code.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'adc_temp_code.axf'
+### ADS-LD Command File: 'adc_temp_code.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'adc_temp_code.lnp', Handle=0x00000134
+### Writing '.lnp' file
+### ADS-LD Command file 'adc_temp_code.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

@@ -1,0 +1,7 @@
+--cpu ARM7TDMI
+".\out\startup.o"
+".\out\main.o"
+--strict --scatter ".\OUT\NSK.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\LIST\NSK.map" -o .\OUT\NSK.axf

@@ -1,0 +1,9 @@
+--cpu ARM7TDMI
+".\startup.o"
+".\adc_temp_main.o"
+".\adc_temprature.o"
+".\lcd.o"
+--strict --scatter ".\adc_temp_code.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\adc_temp_code.map" -o .\adc_temp_code.axf

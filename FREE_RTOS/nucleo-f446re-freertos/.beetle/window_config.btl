@@ -1,0 +1,108 @@
+{
+    "SCREEN-DATA": {
+        "NUMBER-OF-SCREENS": 1,
+        "SCREEN-RESOLUTIONS": [
+            [
+                1920,
+                1080
+            ]
+        ]
+    },
+    "WINDOW-SIZE": "MAXIMIZED",
+    "SCREEN-INDEX": 0,
+    "X-Y-OFFSET": [
+        66,
+        27
+    ],
+    "BOXES": {
+        "0": {
+            "BOX-H": {
+                "0": {
+                    "BOX-V": {
+                        "0": {
+                            "TABS": {
+                                "rel://source/user_code/main.c": {
+                                    "class": "Editor",
+                                    "tab-index": 0,
+                                    "data": {
+                                        "line": 9,
+                                        "index": 24,
+                                        "first-visible-line": 27,
+                                        "x-view-offset": 0
+                                    }
+                                },
+                                "Output": {
+                                    "class": "Console"
+                                },
+                                "CURRENT-INDEX": 1
+                            }
+                        }
+                    },
+                    "SIZES": [
+                        857
+                    ]
+                },
+                "1": {
+                    "BOX-V": {
+                        "0": {
+                            "BOX-H": {
+                                "0": {
+                                    "TABS": {
+                                        "Filetree": {
+                                            "class": "FileExplorer"
+                                        },
+                                        "CURRENT-INDEX": 0
+                                    }
+                                },
+                                "1": {
+                                    "TABS": {
+                                        "SymbolStack": {
+                                            "class": "Symbols"
+                                        },
+                                        "CURRENT-INDEX": 0
+                                    }
+                                }
+                            },
+                            "SIZES": [
+                                468,
+                                459
+                            ]
+                        },
+                        "1": {
+                            "BOX-H": {
+                                "0": {
+                                    "TABS": {
+                                        "Project Dashboard": {
+                                            "class": "Dashboard"
+                                        },
+                                        "CURRENT-INDEX": 0
+                                    }
+                                },
+                                "1": {
+                                    "TABS": {
+                                        "Diagnostics": {
+                                            "class": "Diagnostics"
+                                        },
+                                        "CURRENT-INDEX": 0
+                                    }
+                                }
+                            },
+                            "SIZES": [
+                                570,
+                                357
+                            ]
+                        }
+                    },
+                    "SIZES": [
+                        430,
+                        425
+                    ]
+                }
+            },
+            "SIZES": [
+                923,
+                929
+            ]
+        }
+    }
+}

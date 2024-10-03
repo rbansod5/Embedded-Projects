@@ -1,0 +1,22 @@
+*** Creating Trace Output File 'UART_0_prj.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"startup.o"'
+### List of Objects: adding '"led.o"'
+### List of Objects: adding '"main.o"'
+### List of Objects: adding '"serial.o"'
+### ADS-LD Command completed:
+--device DARMP "startup.o" "led.o" "main.o" "serial.o" --strict --scatter "UART_0_prj.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\UART_0_prj.map" -o "UART_0_prj.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'UART_0_prj.axf'
+### ADS-LD Command File: 'UART_0_prj.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'UART_0_prj.lnp', Handle=0x00000230
+### Writing '.lnp' file
+### ADS-LD Command file 'UART_0_prj.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

@@ -1,0 +1,9 @@
+--cpu ARM7TDMI
+".\startup.o"
+".\adc_pot.o"
+".\adc_pot_main.o"
+".\lcd.o"
+--strict --scatter ".\adc_pot_test.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\adc_pot_test.map" -o .\adc_pot_test.axf

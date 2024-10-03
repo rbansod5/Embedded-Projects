@@ -1,0 +1,11 @@
+Dependencies for Project 'adc_temp_code', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Startup.s)(0x4A02A570)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\adc_temp_main.c)(0x5A45F687)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\adc_temp_main.o --omf_browse .\adc_temp_main.crf --depend .\adc_temp_main.d)
+I (prototype.h)(0x5A45F649)
+I (C:\Keil\ARM\Inc\Philips\lpc21xx.h)(0x532C1500)
+F (.\adc_temprature.c)(0x5A0BE5A2)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\adc_temprature.o --omf_browse .\adc_temprature.crf --depend .\adc_temprature.d)
+I (prototype.h)(0x5A45F649)
+I (C:\Keil\ARM\Inc\Philips\lpc21xx.h)(0x532C1500)
+F (.\lcd.c)(0x5A45F5B8)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\lcd.o --omf_browse .\lcd.crf --depend .\lcd.d)
+I (prototype.h)(0x5A45F649)
+I (C:\Keil\ARM\Inc\Philips\lpc21xx.h)(0x532C1500)

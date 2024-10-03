@@ -1,0 +1,4 @@
+Dependencies for Project 'EXTERNAL_INTERRUPT', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Startup.s)(0x4A02A570)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\exter_interrupt_main.c)(0x5A45FA55)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\exter_interrupt_main.o --omf_browse .\exter_interrupt_main.crf --depend .\exter_interrupt_main.d)
+I (C:\Keil\ARM\Inc\Philips\LPC21xx.H)(0x5A4B6FC5)

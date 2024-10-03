@@ -1,0 +1,20 @@
+<html>
+<body>
+<pre>
+<h1>µVision3 Build Log</h1>
+<h2>Project:</h2>
+F:\LPC2148\LPC2148_Code\RTC\rtc.uv2
+Project File Date:  10/26/2009
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=3204 RO-data=52 RW-data=4 ZI-data=1260  
+FromELF: creating hex file...
+".\OUT\rtc.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=3204 RO-data=52 RW-data=4 ZI-data=1260  
+FromELF: creating hex file...
+".\OUT\rtc.axf" - 0 Error(s), 0 Warning(s).

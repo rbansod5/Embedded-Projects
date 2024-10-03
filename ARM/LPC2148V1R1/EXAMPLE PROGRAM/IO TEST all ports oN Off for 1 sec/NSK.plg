@@ -1,0 +1,16 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Documents and Settings\nsk\Desktop\IO TEST all ports oN Off for 1 sec\NSK.uvproj
+Project File Date:  04/26/2016
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling Startup.s...
+compiling SAMPLETEST.C...
+linking...
+Program Size: Code=812 RO-data=16 RW-data=0 ZI-data=1256  
+FromELF: creating hex file...
+".\NSK.axf" - 0 Errors, 0 Warning(s).

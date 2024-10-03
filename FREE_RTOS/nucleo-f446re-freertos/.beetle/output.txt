@@ -1,0 +1,24 @@
+ERROR: unknown tool category: xpack-gcc-12.3.0-1.7z
+
+/home/rahulba/Embeetle/embeetle/sys/linux/bin/7za x -y /tmp/tmprpfht_5l.7z -o/home/rahulba/Embeetle/embeetle/beetle_tools/linux
+flash rules found at: /home/rahulba/Embeetle/embeetle/beetle_core/resources/hardware/openocd_flash_rules.py
+file exists: True
+WARNING: cannot add element 'custom' twice!
+WARNING: cannot add element 'custom' twice!
+WARNING: cannot add element 'custom' twice!
+
+$(MAKE)
+    build
+    -C
+    build
+    -f
+    ../config/makefile
+    TOOLPREFIX=$(TOOLPREFIX)
+    FLASHTOOL=$(FLASHTOOL)
+
+
+command = ['/home/rahulba/Embeetle/embeetle/beetle_tools/linux/gnu_make_4.2.1_64b/make', 'build', '-C', 'build', '-f', '../config/makefile', 'TOOLPREFIX=/home/rahulba/Embeetle/embeetle/beetle_tools/linux/gnu_arm_toolchain_10.3.1_20210824_64b/bin/arm-none-eabi-', 'FLASHTOOL=/home/rahulba/Embeetle/embeetle/beetle_tools/linux/openocd_0.10.0_dev01438_64b/bin/openocd']
+
+cwd = /home/rahulba/nucleo-f446re-freertos
+
+

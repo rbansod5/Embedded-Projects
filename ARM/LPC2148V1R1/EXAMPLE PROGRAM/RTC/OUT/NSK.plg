@@ -1,0 +1,16 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Programmer cd\ARM  LPC2148DEV BRD\EXAMPLE PROGRAMS\RTC\rtc.uvproj
+Project File Date:  12/02/2011
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling Startup.s...
+compiling main.c...
+linking...
+Program Size: Code=2324 RO-data=32 RW-data=4 ZI-data=1260  
+FromELF: creating hex file...
+".\OUT\NSK.axf" - 0 Errors, 0 Warning(s).

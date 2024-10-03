@@ -1,0 +1,7 @@
+--cpu ARM7TDMI
+".\startup.o"
+".\exter_interrupt_main.o"
+--strict --scatter ".\EXTERNAL_INTERRUPT.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\EXTERNAL_INTERRUPT.map" -o .\EXTERNAL_INTERRUPT.axf

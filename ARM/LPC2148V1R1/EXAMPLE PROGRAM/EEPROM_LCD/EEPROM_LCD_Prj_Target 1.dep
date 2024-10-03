@@ -1,0 +1,8 @@
+Dependencies for Project 'EEPROM_LCD_Prj', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Startup.s)(0x4A02A570)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\lcd.c)(0x5A4B658A)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\lcd.o --omf_browse .\lcd.crf --depend .\lcd.d)
+I (D:\EX PROGRAM\LPC2148V1R1\EEPROM_LCD\prototype.h)(0x5A4B654E)
+I (C:\Keil\ARM\Inc\Philips\lpc21xx.h)(0x5A4B6FC5)
+F (.\main.c)(0x5987FEAA)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (C:\Keil\ARM\Inc\Philips\LPC21xx.H)(0x5A4B6FC5)
+I (D:\EX PROGRAM\LPC2148V1R1\EEPROM_LCD\prototype.h)(0x5A4B654E)

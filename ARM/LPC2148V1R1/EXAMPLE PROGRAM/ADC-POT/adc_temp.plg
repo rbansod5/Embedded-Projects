@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Documents and Settings\nsk\Desktop\lpc2148v1r1\ADC-POT\adc_temp.uvproj
+Project File Date:  12/18/2017
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling Startup.s...
+compiling adc_main.c...
+adc_main.c(99): warning:  #177-D: variable "c" was declared but never referenced
+linking...
+Program Size: Code=1760 RO-data=32 RW-data=8 ZI-data=1256  
+FromELF: creating hex file...
+".\adc_temp.axf" - 0 Errors, 1 Warning(s).
