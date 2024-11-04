@@ -3,7 +3,11 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-H:\coinl\SOURCE\GPIO_TEST_LED_TOGGLE\LED_TOGGLE.uvproj
-Project File Date:  08/01/2022
+Z:\home\rahulba\Embedded-Projects\ARM\ARM_PRACTICE_1768\ARM_PRACTICE_LPC1768\Example codes\GPIO_TEST_LED_TOGGLE\LED_TOGGLE.uvproj
+Project File Date:  10/23/2024
 
 <h2>Output:</h2>
+Rebuild target 'Target 1'
+compiling IOtest.c...
+--- Error: failed to execute 'C:\users\rahulba\AppData\Local\Keil_v5\ARM\BIN41\ArmCC'
+Target not created

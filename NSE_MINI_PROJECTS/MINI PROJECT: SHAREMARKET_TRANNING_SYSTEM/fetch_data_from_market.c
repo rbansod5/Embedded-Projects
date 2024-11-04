@@ -2,74 +2,106 @@
 #include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
+#include <unistd.h> // for sleep()
 
-// Structure to hold the fetched data
-struct MemoryStruct {
-    char *memory;
-    size_t size;
+struct string
+{
+    char *ptr;
+    size_t len;
 };
 
-// Callback function to write the fetched data into memory
-static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, struct MemoryStruct *userp) {
-    size_t realsize = size * nmemb;
-    userp->memory = realloc(userp->memory, userp->size + realsize + 1);
-    if (userp->memory == NULL) {
-        printf("Not enough memory (realloc returned NULL)\n");
-        return 0;  // Out of memory!
+void init_string(struct string *s)
+{
+    s->len = 0;
+    s->ptr = malloc(s->len + 1);
+    if (s->ptr == NULL)
+    {
+        fprintf(stderr, "malloc() failed\n");
+        exit(EXIT_FAILURE);
     }
-    memcpy(&(userp->memory[userp->size]), contents, realsize);
-    userp->size += realsize;
-    userp->memory[userp->size] = 0;  // Null-terminate the string
-    return realsize;
+    s->ptr[0] = '\0';
 }
 
-int main(void) {
+size_t writefunc(void *ptr, size_t size, size_t nmemb, struct string *s)
+{
+    size_t new_len = s->len + size * nmemb;
+    s->ptr = realloc(s->ptr, new_len + 1);
+    if (s->ptr == NULL)
+    {
+        fprintf(stderr, "realloc() failed\n");
+        exit(EXIT_FAILURE);
+    }
+    memcpy(s->ptr + s->len, ptr, size * nmemb);
+    s->len = new_len;
+    s->ptr[s->len] = '\0';
+
+    return size * nmemb;
+}
+
+// Function to fetch data for a given stock symbol
+void fetch_data_for_symbol(const char *symbol, FILE *fp_NSE)
+{
     CURL *curl;
     CURLcode res;
 
-    // Initialize a memory structure to hold the fetched data
-    struct MemoryStruct chunk;
-    chunk.memory = malloc(1);  // Initial allocation
-    chunk.size = 0;            // No data at this point
+    struct string s;
+    init_string(&s);
 
-    // Initialize libcurl
-    curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
-    if (curl) {
-        // Set the URL to fetch data from (e.g., NSE stock data)
-        curl_easy_setopt(curl, CURLOPT_URL, "https://www.nseindia.com/api/option-chain-indices");  // Adjust the URL as needed
+    if (curl)
+    {
+        char url[256];
+        snprintf(url, sizeof(url), "https://www.nseindia.com/api/quote-equity?symbol=%s", symbol);
 
-        // Set the callback function to write the data
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
-        
-        // Set options for handling HTTP headers (optional, depending on the endpoint)
-        struct curl_slist *headers = NULL;
-        headers = curl_slist_append(headers, "User-Agent: Your User Agent Here");
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
 
-        // Perform the request, and check for errors
         res = curl_easy_perform(curl);
-        if (res != CURLE_OK) {
-            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-        } else {
-            // Successfully fetched data; write it to a file
-            FILE *file = fopen("nse_data.json", "w");
-            if (file) {
-                fwrite(chunk.memory, sizeof(char), chunk.size, file);
-                fclose(file);
-                printf("Data successfully written to nse_data.json\n");
-            } else {
-                printf("Could not open file for writing\n");
-            }
+        if (res != CURLE_OK)
+        {
+            fprintf(stderr, "curl_easy_perform() failed for %s: %s\n", symbol, curl_easy_strerror(res));
+        }
+        else
+        {
+            fprintf(fp_NSE, "Data for %s:\n%s\n\n", symbol, s.ptr);
         }
 
-        // Cleanup
-        curl_slist_free_all(headers);
         curl_easy_cleanup(curl);
-        free(chunk.memory);
+        free(s.ptr);
+    }
+}
+
+int main(void)
+{
+    CURL *curl;
+    CURLcode res;
+
+    // Open file to write the stock data
+    FILE *fp_NSE = fopen("NSE_DATA.txt", "w");
+    if (fp_NSE == NULL)
+    {
+        perror("fopen");
+        return EXIT_FAILURE;
     }
 
+    curl_global_init(CURL_GLOBAL_DEFAULT);
+
+    // List of stock symbols to fetch data for
+    // This list should ideally be fetched dynamically from a CSV or NSE API
+    const char *stock_symbols[] = {"TCS", "INFY", "RELIANCE", "ONGC", "ICICIBANK", "SBIN", "ITC", "BANDHANBNK", "BSE", "USHAMART", "TATASTEEL"};
+    int num_symbols = sizeof(stock_symbols) / sizeof(stock_symbols[0]);
+
+    for (int i = 0; i < num_symbols; ++i)
+    {
+        printf("Fetching data for symbol: %s\n", stock_symbols[i]);
+        fetch_data_for_symbol(stock_symbols[i], fp_NSE);
+        usleep(100);  // Add delay to prevent getting blocked by NSE
+    }
+
+    fclose(fp_NSE);
     curl_global_cleanup();
+
     return 0;
 }
